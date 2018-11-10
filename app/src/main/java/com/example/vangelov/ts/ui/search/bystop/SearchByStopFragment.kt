@@ -1,20 +1,29 @@
 package com.example.vangelov.ts.ui.search.bystop
 
 
+import android.content.Context
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ProgressBar
 import com.example.vangelov.ts.R
 import com.example.vangelov.ts.TSApplication
+import com.example.vangelov.ts.data.LineArrivals
 import com.example.vangelov.ts.data.Stop
 import com.example.vangelov.ts.ui.search.SearchActivity
 import com.example.vangelov.ts.ui.search.SearchFragment
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +35,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopView>(), SearchByStopView {
+
     override fun hideLoading() {
         (activity as SearchActivity).blockUI = false
         progressBar.visibility = View.GONE
@@ -33,8 +43,8 @@ class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopV
 
     override fun showLoading() {
         //todo
-        (activity as SearchActivity).blockUI = true
         progressBar.visibility = View.VISIBLE
+        (activity as SearchActivity).blockUI = true
     }
 
 
@@ -48,8 +58,26 @@ class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopV
         return presenter
     }
 
-    override fun setAdapter() {
+    override fun setStopsAdapter() {
         searchField.setAdapter(ArrayAdapter<Stop>(context, android.R.layout.simple_list_item_1, presenter.stopsList))
+    }
+
+    override fun setArrivalsAdapter(arrivals: List<LineArrivals>) {
+        recyclerView.adapter = ArrivalsByStopAdapter(arrivals)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+    }
+
+    override fun setClickOnStopListener(clickListener: AdapterView.OnItemClickListener) {
+        searchField.onItemClickListener = clickListener
+    }
+
+    override fun setOnTouchListener() {
+        searchField.setOnTouchListener(ClearStopListener())
+    }
+
+    override fun hideKeyboard() {
+        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(activity?.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     override fun onCreateView(
@@ -64,4 +92,28 @@ class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopV
         return view
     }
 
+    inner class ClearStopListener() : View.OnTouchListener {
+        val drawable: Drawable = searchField.compoundDrawables[2]
+        private val fuzz = 10
+
+        override fun onTouch(v: View, event: MotionEvent?): Boolean {
+            val bounds: Rect = drawable.bounds
+            var x = event?.x
+            var y = event?.y
+            if (event?.action == MotionEvent.ACTION_DOWN) {
+                if (x != null && y != null) {
+                    if (x >= (bounds.left - fuzz) && x <= (v.right - v.paddingRight + fuzz)
+                        && y >= (v.paddingTop - fuzz) && y <= (v.height - v.paddingBottom) + fuzz
+                    ) {
+                        searchField.setText("")
+                        recyclerView.adapter = null
+                        event.action = MotionEvent.ACTION_CANCEL
+                        return false
+                    }
+                }
+            }
+            return false
+        }
+    }
 }
+

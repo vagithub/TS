@@ -45,5 +45,7 @@ dependencies {
     implementation "net.grandcentrix.thirtyinch:thirtyinch-logginginterceptor:$thirtyinchVersion"
     implementation "net.grandcentrix.thirtyinch:thirtyinch-kotlin:$thirtyinchVersion"
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+        compile 'org.droidparts:droidparts:3.2.5'
+
 
 }
