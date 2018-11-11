@@ -23,7 +23,7 @@ class ArrivalsByStopAdapter(private val lineArrivals: List<LineArrivals>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArrivalsItemHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_view_item, parent, false) //maybe false as parameter
+            .inflate(R.layout.arrivals_item, parent, false) //maybe false as parameter
         return ArrivalsItemHolder(itemView)
     }
 

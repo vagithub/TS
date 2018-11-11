@@ -88,8 +88,7 @@ class SearchByStopPresenter(var http: OkHttpClient) : SearchPresenter<SearchBySt
         override fun onSubscribe(d: Disposable) {
         }
 
-        override fun onError(e: Throwable) {//todo needs implementing for 404
-            e.printStackTrace()
+        override fun onError(e: Throwable) {
         }
     }
 

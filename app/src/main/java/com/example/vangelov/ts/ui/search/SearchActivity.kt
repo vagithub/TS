@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import com.example.vangelov.ts.R
+import com.example.vangelov.ts.ui.search.byline.SearchByLineFragment
 import com.example.vangelov.ts.ui.search.bystop.SearchByStopFragment
 
 class SearchActivity : AppCompatActivity() {
@@ -20,7 +21,13 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         val fragmentManager = supportFragmentManager
-        var fragment = SearchByStopFragment()
+        var fragment = when (intent.extras.getInt("fragment")) {
+            1 -> SearchByStopFragment()
+            2 -> SearchByLineFragment()
+            else -> {
+                SearchByStopFragment()
+            }
+        }
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.searchFragmentContainer, fragment).commit()
     }

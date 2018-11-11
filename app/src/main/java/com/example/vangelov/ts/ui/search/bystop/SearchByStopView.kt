@@ -19,13 +19,4 @@ interface SearchByStopView : SearchView {
 
     @CallOnMainThread
     fun setOnTouchListener()
-
-    @CallOnMainThread
-    fun showLoading()
-
-    @CallOnMainThread
-    fun hideLoading()
-
-    @CallOnMainThread
-    fun hideKeyboard()
 }

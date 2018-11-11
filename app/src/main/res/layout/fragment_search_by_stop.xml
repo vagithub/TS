@@ -24,7 +24,8 @@
         android:id="@+id/stops_search_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawableRight="@android:drawable/ic_menu_close_clear_cancel"
+        android:completionThreshold="0"
+        android:drawableRight="@drawable/ic_clear_large"
         android:hint="@string/enter_stop_name_or_number"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/arrivals_results_list"
@@ -40,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stops_search_field"
-        tools:listitem="@layout/recycler_view_item">
+        tools:listitem="@layout/arrivals_item">
 
     </android.support.v7.widget.RecyclerView>
 

@@ -8,35 +8,35 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Button
-        android:id="@+id/button18"
+        android:id="@+id/searchByStopBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/find_by_stop"
-        app:layout_constraintBottom_toTopOf="@+id/button15"
+        app:layout_constraintBottom_toTopOf="@+id/SearchByLineBtn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/button15"
+        android:id="@+id/SearchByLineBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/find_by_line"
-        app:layout_constraintBottom_toTopOf="@+id/button19"
-        app:layout_constraintLeft_toLeftOf="@+id/button18"
-        app:layout_constraintRight_toRightOf="@+id/button18"
-        app:layout_constraintTop_toBottomOf="@+id/button18" />
+        app:layout_constraintBottom_toTopOf="@+id/useMapsBtn"
+        app:layout_constraintLeft_toLeftOf="@+id/searchByStopBtn"
+        app:layout_constraintRight_toRightOf="@+id/searchByStopBtn"
+        app:layout_constraintTop_toBottomOf="@+id/searchByStopBtn" />
 
     <Button
-        android:id="@+id/button19"
+        android:id="@+id/useMapsBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
         android:text="@string/use_maps"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/button15"
-        app:layout_constraintRight_toRightOf="@+id/button15"
-        app:layout_constraintTop_toBottomOf="@+id/button15" />
+        app:layout_constraintLeft_toLeftOf="@+id/SearchByLineBtn"
+        app:layout_constraintRight_toRightOf="@+id/SearchByLineBtn"
+        app:layout_constraintTop_toBottomOf="@+id/SearchByLineBtn" />
 
 </android.support.constraint.ConstraintLayout>
