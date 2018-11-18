@@ -1,7 +1,6 @@
 package com.example.vangelov.ts.ui.search.bystop
 
 
-import android.content.Context
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -12,16 +11,13 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.ProgressBar
 import com.example.vangelov.ts.R
 import com.example.vangelov.ts.TSApplication
 import com.example.vangelov.ts.data.LineArrivals
 import com.example.vangelov.ts.data.Stop
-import com.example.vangelov.ts.ui.search.SearchActivity
 import com.example.vangelov.ts.ui.search.SearchFragment
 
 /**
@@ -30,21 +26,10 @@ import com.example.vangelov.ts.ui.search.SearchFragment
  */
 class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopView>(), SearchByStopView {
 
-    override fun hideLoading() {
-        (activity as SearchActivity).blockUI = false
-        progressBar.visibility = View.GONE
-    }
-
-    override fun showLoading() {
-        //todo
-        progressBar.visibility = View.VISIBLE
-        (activity as SearchActivity).blockUI = true
-    }
 
 
     private lateinit var searchField: AutoCompleteTextView
     private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
     private lateinit var presenter: SearchByStopPresenter
 
     override fun providePresenter(): SearchByStopPresenter {
@@ -69,10 +54,6 @@ class SearchByStopFragment : SearchFragment<SearchByStopPresenter, SearchByStopV
         searchField.setOnTouchListener(ClearStopListener())
     }
 
-    override fun hideKeyboard() {
-        val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(activity?.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

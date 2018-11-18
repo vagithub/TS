@@ -24,7 +24,6 @@ class SearchByStopPresenter(var http: OkHttpClient) : SearchPresenter<SearchBySt
     }
 
     private fun loadStops(view: SearchByStopView) {
-
         var request = Request.Builder().url(STOPS_URL).build()
         Single.create<Response> { emitter ->
             var response: Response = http.newCall(request).execute()
@@ -51,6 +50,7 @@ class SearchByStopPresenter(var http: OkHttpClient) : SearchPresenter<SearchBySt
             if (stopsList.isEmpty()) {
                 //TODO throw exception
             }
+            //todo remove stopsmap
             stopsMap = HashMap()
             stopsList.forEach { stop ->
                 stopsMap[stop.number] = stop

@@ -1,5 +1,6 @@
 package com.example.vangelov.ts.ui.search
 
+import com.example.vangelov.ts.data.Line
 import com.example.vangelov.ts.data.Stop
 import net.grandcentrix.thirtyinch.TiPresenter
 import okhttp3.OkHttpClient
@@ -19,5 +20,5 @@ abstract class SearchPresenter<T: SearchView>(http : OkHttpClient) : TiPresenter
 
     lateinit var stopsMap: MutableMap<String, Stop>
     lateinit var stopsList: List<Stop>
-
+    lateinit var linesList: List<Line>
 }

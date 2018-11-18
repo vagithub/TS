@@ -1,4 +1,4 @@
-package com.example.vangelov.ts.ui.search.bystop
+package com.example.vangelov.ts.ui.search.byline
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,8 +12,9 @@ import com.example.vangelov.ts.data.LineArrivals
 import com.example.vangelov.ts.data.TRAM
 import com.example.vangelov.ts.data.TROLLEY
 
-class ArrivalsByStopAdapter(private val lineArrivals: List<LineArrivals>) :
-    RecyclerView.Adapter<ArrivalsByStopAdapter.ArrivalsItemHolder>() {
+//todo remove and use the other
+class ArrivalsByLineAdapter(private val lineArrivals: List<LineArrivals>) :
+    RecyclerView.Adapter<ArrivalsByLineAdapter.ArrivalsItemHolder>() {
 
     class ArrivalsItemHolder(view: View) : RecyclerView.ViewHolder(view)
 

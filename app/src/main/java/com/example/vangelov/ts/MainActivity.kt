@@ -12,12 +12,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<Button>(R.id.searchByStopBtn).setOnClickListener { clickSearchByStop() }
+        findViewById<Button>(R.id.SearchByLineBtn).setOnClickListener { clickSearchByLine() }
     }
 
-    public fun clickSearchByStop() {
+    private fun clickSearchByStop() {
         val searchIntent : Intent = Intent(this, SearchActivity::class.java)
         println(searchIntent.extras)
         searchIntent.putExtra("fragment", 1)
+        startActivity(searchIntent)
+    }
+
+    private fun clickSearchByLine() {
+        val searchIntent: Intent = Intent(this, SearchActivity::class.java)
+        println(searchIntent.extras)
+        searchIntent.putExtra("fragment", 2)
         startActivity(searchIntent)
     }
 }
