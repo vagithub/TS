@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TS</string>
+    <string name="app_name">Transport</string>
     <string name="find_by_stop">FIND BY STOP</string>
     <string name="find_by_line">FIND BY LINE</string>
     <string name="use_maps">USE MAPS</string>
